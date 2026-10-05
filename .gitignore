@@ -1,0 +1,10 @@
+# editor backups
+*.bak
+*.bak[0-9]
+
+# nix build output
+result
+result-*
+
+# direnv
+.direnv/

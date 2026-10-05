@@ -1,0 +1,194 @@
+
+/* 1. Tabs und obere Leisten restlos ausblenden */
+#titlebar,
+#TabsToolbar,
+#PersonalToolbar {
+    visibility: collapse !important;
+}
+
+#navigator-toolbox {
+    border: none !important;
+    background: transparent !important;
+    min-height: 0 !important;
+}
+
+#nav-bar {
+    height: 0 !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+}
+
+#nav-bar-customization-target > :not(#urlbar-container),
+#PanelUI-button,
+#unified-extensions-button {
+    visibility: collapse !important;
+}
+
+/* 2. Die URL-Bubble (OUTER COLOR: Dunkelgrau) */
+#urlbar {
+    position: fixed !important;
+    top: 20vh !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 600px !important;
+    max-width: 90vw !important;
+    
+    background: #242426 !important; 
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05) !important;
+
+    opacity: 0 !important;
+    pointer-events: none !important;
+    z-index: 99999 !important;
+    transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    transform-origin: top center;
+}
+
+#urlbar:focus-within,
+#urlbar[focused="true"] {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+#urlbar[breakout],
+#urlbar[breakout][breakout-extend] {
+    top: 20vh !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 600px !important;
+    background: #242426 !important; 
+    padding: 0 !important;
+    border-radius: 16px !important;
+}
+
+#urlbar[breakout]:not(:focus-within) {
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* =========================================================================
+   5. GTK-WEISS RESTLOS ÜBERDECKEN (INNER COLOR: Fast Schwarz)
+   ========================================================================= */
+#urlbar-background {
+    display: none !important;
+}
+
+/* HIER IST DER FIX: .urlbar-input-container (mit Punkt!) */
+.urlbar-input-container,
+#urlbar-input-container,
+.urlbar-input-box {
+    border: none !important;
+    background: #141414 !important; 
+    background-color: #141414 !important;
+    background-image: none !important;
+    height: 52px !important;
+}
+
+.urlbar-input-container,
+#urlbar-input-container {
+    padding: 0 20px !important;
+    border-radius: 16px 16px 0 0 !important;
+}
+
+/* Das Textfeld zwingt das GTK-Weiß weg */
+#urlbar-input,
+.urlbar-input.textbox-input {
+    appearance: none !important;
+    -moz-appearance: none !important;
+    background: #141414 !important; 
+    background-color: #141414 !important;
+    box-shadow: none !important;
+    text-align: left !important;
+    
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important; 
+    
+    font-size: 16px !important;
+    font-family: system-ui, -apple-system, sans-serif !important;
+    font-weight: 500 !important;
+
+#urlbar-label-box,
+#urlbar-search-mode-indicator,
+.searchmode-switcher,
+.searchbar-engine-image {
+    width: 0 !important;
+    opacity: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    pointer-events: none !important;
+}
+}
+
+/* =========================================================================
+   6. ICONS UND GOOGLE-LOGO VERSTECKEN
+   ========================================================================= */
+#urlbar-label-box,
+#urlbar-search-mode-indicator,
+.searchmode-switcher,
+.searchbar-engine-image {
+    width: 0 !important;
+    opacity: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    pointer-events: none !important;
+}
+
+#identity-box,
+#identity-icon-box,
+#identity-permission-box,
+#tracking-protection-icon-container,
+#page-action-buttons,
+#star-button-box,
+.urlbar-icon,
+.urlbar-icon-wrapper,
+.urlbar-page-action,
+#picture-in-picture-button {
+    display: none !important;
+}
+
+/* =========================================================================
+   7. DROPDOWN-MENÜ (OUTER COLOR: Dunkelgrau)
+   ========================================================================= */
+.urlbarView {
+    background: #242426 !important; 
+    border: none !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-radius: 0 0 16px 16px !important;
+    width: 100% !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    padding-bottom: 8px !important;
+}
+
+.urlbarView-body-inner,
+.urlbarView-body-outer {
+    background: transparent !important;
+    border: none !important;
+}
+
+.urlbarView-row {
+    padding: 8px 16px !important;
+    border-radius: 8px !important;
+    margin: 2px 8px !important;
+}
+
+.urlbarView-title {
+    color: #ffffff !important;
+    font-size: 15px !important;
+}
+
+.urlbarView-url {
+    color: #888888 !important;
+    font-size: 13px !important;
+}
+
+.urlbarView-row:hover,
+.urlbarView-row[selected] {
+    background-color: rgba(255, 255, 255, 0.04) !important;
+}
