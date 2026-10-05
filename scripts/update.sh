@@ -19,6 +19,9 @@ set -euo pipefail
 PATH="/run/current-system/sw/bin:/run/wrappers/bin:/usr/bin:/bin"
 export PATH
 export LC_ALL=C
+# a maintenance script must never block on a password prompt. If the credential
+# helper fails, the push fails and the summary reports it instead of hanging.
+export GIT_TERMINAL_PROMPT=0
 
 REPO=/etc/nixos
 FLAKE="$REPO#nixos"

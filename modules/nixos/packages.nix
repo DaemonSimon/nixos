@@ -7,6 +7,10 @@
   # Example: keep git for emergency if your room helper breaks
   environment.systemPackages = with pkgs; [
     git
+    # gh must live here, not in home packages: update.sh pins PATH to
+    # /run/current-system/sw/bin and its git push relies on `gh` as the
+    # credential helper. Home packages would land outside that PATH.
+    gh
     # if you do NOT want home-manager yet, uncomment the list below:
     # vesktop localsend kitty firefox vscode neovim ripgrep fd gcc gnumake unzip opencode fuzzel
   ];
