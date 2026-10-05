@@ -188,8 +188,8 @@ ok "$S_FATPAK"
 
 # ---- 6. garbage -----------------------------------------------------------
 step "6/7  Garbage collection"
-info "removing all old generations (this drops the boot-menu rollback entries)"
-nix-collect-garbage -d
+info "removing generations older than $GC_OLDER_THAN (keeps everything newer)"
+nix-collect-garbage --delete-older-than "$GC_OLDER_THAN"
 AVAIL_AFTER="$(df -Pk /nix | awk 'NR==2 {print $4}')"
 FREED_KB=$(( AVAIL_AFTER - AVAIL_BEFORE ))
 if [ "$FREED_KB" -gt 0 ]; then

@@ -147,14 +147,15 @@ The password for `simon` is set during that install, not here.
 ## Maintenance
 
 ```console
-$ sudo nix-collect-garbage -d
+$ sudo nix-collect-garbage --delete-older-than 14d
 $ nix-store --optimise
 ```
 
-The first deletes store paths nothing references, including generations
-older than you want to keep. The second hard-links identical files so
-things like fonts are stored once. Add `--print-dead` to the first to see
-what it would remove first.
+The first deletes generations older than 14 days plus store paths nothing
+references, so the last two weeks of rebuilds stay in the boot menu and
+can still be rolled back to. The second hard-links identical files so
+things like fonts are stored once. Add `--print-dead` to the first to
+see what it would remove first.
 
 Adding a package means editing `modules/home/packages.nix` or
 `modules/nixos/packages.nix` and rebuilding. Attribute names come from
