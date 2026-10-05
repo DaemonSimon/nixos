@@ -15,5 +15,6 @@
     ./packages.nix
     ./xremap.nix
     ./flatpak.nix
+    ./update.nix
   ];
 }
