@@ -13,6 +13,8 @@ hl.bind(mainMod .. " + O",         hl.dsp.exec_cmd("qs ipc call monitors toggle"
 hl.bind(mainMod .. " + SHIFT + O", hl.dsp.exec_cmd("qs ipc call monitors refresh"))
 hl.bind(mainMod .. " + C",         hl.dsp.exec_cmd("qs ipc call idle toggle"))
 hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd("qs ipc call bluetooth toggle"))
+-- Connect priority Bluetooth devices (mouse + hearing aids)
+hl.bind(mainMod .. " + Insert", hl.dsp.exec_cmd("~/.local/bin/bt-connect-priority.sh"))
 
 -- Launch apps
 hl.bind(mainMod .. " + V", hl.dsp.exec_cmd(terminal))
