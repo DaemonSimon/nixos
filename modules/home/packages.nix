@@ -43,6 +43,5 @@
 	chromium
 	moonlight-qt
 	# elgato stream deck controller
-	streamcontroller
 	];
 }
