@@ -118,6 +118,12 @@
     font-weight: 500 !important;
 }
 
+#urlbar-input::placeholder,
+.urlbar-input.textbox-input::placeholder {
+    color: #888888 !important;
+    opacity: 1 !important;
+}
+
 #urlbar-label-box,
 #urlbar-search-mode-indicator,
 .searchmode-switcher,
