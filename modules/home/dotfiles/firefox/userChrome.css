@@ -79,7 +79,7 @@
     display: none !important;
 }
 
-/* HIER IST DER FIX: .urlbar-input-container (mit Punkt!) */
+/* HIER IST DER FIX .urlbar-input-container (mit Punkt!) */
 .urlbar-input-container,
 #urlbar-input-container,
 .urlbar-input-box {
