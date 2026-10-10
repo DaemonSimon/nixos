@@ -15,9 +15,20 @@ let
 in
 {
   home.activation.installDiscordDeafenPlugin = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    run rm -rf "${pluginDir}"
-    run mkdir -p "${pluginDir}"
-    run cp -r ${pluginSource}/. "${pluginDir}/"
-    run chmod -R u+w "${pluginDir}"
+    plugin_source="${pluginSource}"
+    plugin_dir="${pluginDir}"
+
+    tree_checksum() {
+      ( cd "$1" && find . -type f ! -path '*/__pycache__/*' -exec cksum {} + | sort ) | cksum
+    }
+
+    # Only touch the plugin tree when it differs from the source. Replacing it
+    # while StreamController is running makes the live app drop the plugin.
+    if [ ! -d "$plugin_dir" ] || [ "$(tree_checksum "$plugin_dir")" != "$(tree_checksum "$plugin_source")" ]; then
+      run rm -rf "$plugin_dir"
+      run mkdir -p "$plugin_dir"
+      run cp -r "$plugin_source/." "$plugin_dir/"
+      run chmod -R u+w "$plugin_dir"
+    fi
   '';
 }

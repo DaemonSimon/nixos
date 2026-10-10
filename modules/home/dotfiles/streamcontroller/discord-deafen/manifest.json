@@ -8,5 +8,6 @@
     "description": "Mute and deafen Discord (through Vesktop) straight from your StreamController deck. The actions drive Discord's own buttons via a small local Vesktop bridge, so the change is sent to Discord and is visible to everyone in the call.",
     "short-description": "Mute/deafen Discord through Vesktop",
     "tags": ["Utility", "Communication"],
+    "minimum-version": "1.0.0",
     "app-version": "1.0.0"
 }
