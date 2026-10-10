@@ -1,0 +1,12 @@
+{
+    "version": "1.0.0",
+    "thumbnail": "assets/info.png",
+    "id": "com_simon_DiscordDeafen",
+    "name": "Discord Deafen",
+    "author": "simon",
+    "github": "https://github.com/StreamController/PluginTemplate",
+    "description": "Mute and deafen Discord (through Vesktop) straight from your StreamController deck. The actions drive Discord's own buttons via a small local Vesktop bridge, so the change is sent to Discord and is visible to everyone in the call.",
+    "short-description": "Mute/deafen Discord through Vesktop",
+    "tags": ["Utility", "Communication"],
+    "app-version": "1.0.0"
+}
