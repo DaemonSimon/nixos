@@ -9,8 +9,4 @@
     interface = "0.0.0.0";
     port = 8200;
   };
-
-  flatpak.packages = with pkgs.flatpak; [
-    com.core447.StreamController
-  ];
 }

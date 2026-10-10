@@ -30,6 +30,11 @@
         appId = "com.modrinth.ModrinthApp";
         origin = "flathub";
       }
+      # StreamController - Stream Deck UI
+      {
+        appId = "com.core447.StreamController";
+        origin = "flathub";
+      }
     ];
   };
 }
