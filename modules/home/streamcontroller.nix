@@ -3,7 +3,7 @@
 { config, pkgs, ... }:
 
 {
-  home.file."StreamController/plugins/discord-deafen" = {
+  home.file.".var/app/com.core447.StreamController/data/plugins/discord-deafen" = {
     source = ./dotfiles/streamcontroller/discord-deafen;
     recursive = true;
   };
