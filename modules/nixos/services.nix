@@ -10,7 +10,7 @@
     port = 8200;
   };
 
-  services.udev.extraRules = ''
-    SUBSYSTEM=="usb", ATTR{idVendor}=="0fd9", MODE="0666", GROUP="plugdev"
-  '';
+  flatpak.packages = with pkgs.flatpak; [
+    com.core447.StreamController
+  ];
 }
