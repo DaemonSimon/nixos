@@ -10,5 +10,7 @@
     port = 8200;
   };
 
-  services.udev.packages = [ pkgs.streamdeck-ui ];
+  services.udev.extraRules = ''
+    SUBSYSTEM=="usb", ATTR{idVendor}=="0fd9", MODE="0666", GROUP="plugdev"
+  '';
 }
