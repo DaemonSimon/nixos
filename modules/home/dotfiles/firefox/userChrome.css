@@ -1,4 +1,16 @@
 
+:root {
+    --toolbar-bgcolor: #242426 !important;
+    --toolbar-field-background-color: #141414 !important;
+    --toolbar-field-focus-background-color: #141414 !important;
+    --toolbar-field-color: #ffffff !important;
+    --toolbar-field-focus-color: #ffffff !important;
+    --toolbar-field-border-color: transparent !important;
+    --toolbar-field-focus-border-color: transparent !important;
+    --lwt-accent-color: #1c1c1e !important;
+    --lwt-text-color: #ffffff !important;
+}
+
 /* 1. Tabs und obere Leisten restlos ausblenden */
 #titlebar,
 #TabsToolbar,
@@ -23,10 +35,28 @@
     overflow: visible !important;
 }
 
-#nav-bar-customization-target > :not(#urlbar-container),
-#PanelUI-button,
-#unified-extensions-button {
+/* Nur statische Chrome-Buttons verschwinden komplett.
+   Extensions-Popups (Einstellungen, Install-Dialoge) brauchen ihren
+   Anker-Button im DOM: visibility:hidden behaelt das Layout, sodass die
+   Popups korrekt andocken koennen - visibility:collapse zerstoert den
+   Anker und laesst Extensions "verschwinden". */
+#nav-bar-customization-target > :not(#urlbar-container):not(.webextension-browser-action):not(#unified-extensions-container):not(#unified-extensions-button):not(#PanelUI-button),
+#nav-bar > #PanelUI-button {
     visibility: collapse !important;
+}
+
+.webextension-browser-action,
+#unified-extensions-button,
+#unified-extensions-container,
+#PanelUI-button {
+    visibility: hidden !important;
+}
+
+#navigator-toolbox:focus-within .webextension-browser-action,
+#navigator-toolbox:focus-within #unified-extensions-button,
+#navigator-toolbox:focus-within #unified-extensions-container,
+#navigator-toolbox:focus-within #PanelUI-button {
+    visibility: visible !important;
 }
 
 /* 2. Die URL-Bubble (OUTER COLOR: Dunkelgrau) */
@@ -80,7 +110,9 @@
    5. GTK-WEISS RESTLOS ÜBERDECKEN (INNER COLOR: Fast Schwarz)
    ========================================================================= */
 #urlbar-background {
-    display: none !important;
+    background: #141414 !important;
+    appearance: none !important;
+    -moz-appearance: none !important;
 }
 
 /* HIER IST DER FIX .urlbar-input-container (mit Punkt!) */
@@ -88,6 +120,8 @@
 #urlbar-input-container,
 .urlbar-input-box {
     border: none !important;
+    appearance: none !important;
+    -moz-appearance: none !important;
     background: #141414 !important; 
     background-color: #141414 !important;
     background-image: none !important;
@@ -124,20 +158,6 @@
     opacity: 1 !important;
 }
 
-#urlbar-label-box,
-#urlbar-search-mode-indicator,
-.searchmode-switcher,
-.searchbar-engine-image {
-    width: 0 !important;
-    opacity: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    pointer-events: none !important;
-}
-
-/* =========================================================================
-   6. ICONS UND GOOGLE-LOGO VERSTECKEN
-   ========================================================================= */
 #urlbar-label-box,
 #urlbar-search-mode-indicator,
 .searchmode-switcher,
