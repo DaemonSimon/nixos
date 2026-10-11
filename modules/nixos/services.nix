@@ -9,4 +9,6 @@
     interface = "0.0.0.0";
     port = 8200;
   };
+
+  systemd.services.duplicati.serviceConfig.StateDirectoryMode = "0700";
 }
