@@ -1,4 +1,3 @@
-
 /* 1. Tabs und obere Leisten restlos ausblenden */
 #titlebar,
 #TabsToolbar,
@@ -29,7 +28,7 @@
     visibility: collapse !important;
 }
 
-/* 2. Die URL-Bubble (OUTER COLOR: Dunkelgrau) */
+/* 2. Die URL-Bubble (Positionierung in der Mitte) */
 #urlbar {
     position: fixed !important;
     top: 20vh !important;
@@ -39,36 +38,26 @@
     margin-right: auto !important;
     width: 600px !important;
     max-width: 90vw !important;
-    
-    background: #242426 !important; 
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    border-radius: 16px !important;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05) !important;
-
+    min-height: 52px !important;
     opacity: 0 !important;
     pointer-events: none !important;
     z-index: 99999 !important;
-    /* Removed transform from transition */
     transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 #urlbar:focus-within,
-#urlbar[focused="true"] {
+#urlbar[focused="true"],
+#urlbar[breakout][breakout-extend] {
     opacity: 1 !important;
     pointer-events: auto !important;
-}
-
-#urlbar[breakout],
-#urlbar[breakout][breakout-extend] {
     top: 20vh !important;
     left: 0 !important;
     right: 0 !important;
     margin-left: auto !important;
     margin-right: auto !important;
     width: 600px !important;
-    background: #242426 !important; 
     padding: 0 !important;
-    border-radius: 16px !important;
+    background: transparent !important;
 }
 
 #urlbar[breakout]:not(:focus-within) {
@@ -76,46 +65,50 @@
     pointer-events: none !important;
 }
 
-/* =========================================================================
-   5. GTK-WEISS RESTLOS ÜBERDECKEN (INNER COLOR: Fast Schwarz)
-   ========================================================================= */
+/* 3. EINGABEFELD: Die "Extra Linie" sichtbar machen */
 #urlbar-background {
     display: none !important;
 }
 
-/* HIER IST DER FIX .urlbar-input-container (mit Punkt!) */
-.urlbar-input-container,
-#urlbar-input-container,
-.urlbar-input-box {
-    border: none !important;
-    background: #141414 !important; 
-    background-color: #141414 !important;
-    background-image: none !important;
-    height: 52px !important;
-}
-
 .urlbar-input-container,
 #urlbar-input-container {
-    padding: 0 20px !important;
-    border-radius: 16px 16px 0 0 !important;
+    display: flex !important;
+    visibility: visible !important;
+    height: 52px !important;
+    min-height: 52px !important;
+    background-color: #f0f0f0 !important; 
+    border: 1px solid #cccccc !important;
+    border-radius: 12px !important;
+    padding: 0 16px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+    
+    /* FIX: Zwingt das Eingabefeld nach vorne */
+    position: relative !important;
+    z-index: 100 !important; /* Erhöht auf 100 */
 }
 
-/* Das Textfeld zwingt das GTK-Weiß weg */
 #urlbar-input,
 .urlbar-input.textbox-input {
     appearance: none !important;
     -moz-appearance: none !important;
-    background: #141414 !important; 
-    background-color: #141414 !important;
+    background: transparent !important; 
     box-shadow: none !important;
     text-align: left !important;
     
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important; 
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important; 
     
-    font-size: 16px !important;
+    font-size: 18px !important;
     font-family: system-ui, -apple-system, sans-serif !important;
     font-weight: 500 !important;
+    
+    height: 100% !important;
+    min-height: 52px !important;
+    line-height: 52px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    opacity: 1 !important;
 }
 
 #urlbar-input::placeholder,
@@ -124,81 +117,21 @@
     opacity: 1 !important;
 }
 
-#urlbar-label-box,
-#urlbar-search-mode-indicator,
-.searchmode-switcher,
-.searchbar-engine-image {
-    width: 0 !important;
-    opacity: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    pointer-events: none !important;
-}
-
-/* =========================================================================
-   6. ICONS UND GOOGLE-LOGO VERSTECKEN
-   ========================================================================= */
-#urlbar-label-box,
-#urlbar-search-mode-indicator,
-.searchmode-switcher,
-.searchbar-engine-image {
-    width: 0 !important;
-    opacity: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    pointer-events: none !important;
-}
-
-#identity-box,
-#identity-icon-box,
-#identity-permission-box,
-#tracking-protection-icon-container,
-#page-action-buttons,
-#star-button-box,
-.urlbar-icon,
-.urlbar-icon-wrapper,
-.urlbar-page-action,
-#picture-in-picture-button {
-    display: none !important;
-}
-
-/* =========================================================================
-   7. DROPDOWN-MENÜ (OUTER COLOR: Dunkelgrau)
-   ========================================================================= */
+/* FIX: Position the suggestions dropdown below the input */
 .urlbarView {
-    background: #242426 !important; 
-    border: none !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
-    border-radius: 0 0 16px 16px !important;
-    width: 100% !important;
-    margin: 0 !important;
-    box-shadow: none !important;
-    padding-bottom: 8px !important;
+    margin-top: 52px !important; 
+    z-index: 99 !important; 
+    background-color: white !important;
+    border-radius: 0 0 12px 12px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
 }
 
-.urlbarView-body-inner,
-.urlbarView-body-outer {
-    background: transparent !important;
-    border: none !important;
-}
-
-.urlbarView-row {
-    padding: 8px 16px !important;
-    border-radius: 8px !important;
-    margin: 2px 8px !important;
-}
-
-.urlbarView-title {
-    color: #ffffff !important;
-    font-size: 15px !important;
-}
-
-.urlbarView-url {
-    color: #888888 !important;
-    font-size: 13px !important;
-}
-
-.urlbarView-row:hover,
-.urlbarView-row[selected] {
-    background-color: rgba(255, 255, 255, 0.04) !important;
+/* 4. ICONS VERSTECKEN */
+#urlbar-label-box,
+#urlbar-search-mode-indicator,
+.searchmode-switcher,
+.searchbar-engine-image,
+#identity-box,
+#trackinga {
+    display: none !important;
 }
