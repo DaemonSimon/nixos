@@ -40,7 +40,8 @@
 	git
 	# rdtk (~/test) - local reddit tiktok feed: node runs it, chromium holds the login
 	nodejs
-	chromium
+  chromium
+  home-manager
 	moonlight-qt
 	# elgato stream deck controller
 	];
