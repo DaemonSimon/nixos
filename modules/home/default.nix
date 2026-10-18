@@ -16,6 +16,7 @@
      ./lazyvim.nix
      ./streamcontroller.nix
      ./wallpapers.nix
+     ./awww.nix
   ];
 
   # Your name and where your room is - MUST match users.users.simon in nixos/users.nix
