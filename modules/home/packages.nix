@@ -42,6 +42,7 @@
 	nodejs
   chromium
   home-manager
+  awww
 	moonlight-qt
 	# elgato stream deck controller
 	];
