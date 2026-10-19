@@ -18,7 +18,6 @@
 	playerctl
 	steam
 	libnotify
-	vesktop
 	localsend
 	kitty
 	vscode

@@ -15,6 +15,7 @@
     ./kitty.nix
      ./lazyvim.nix
      ./streamcontroller.nix
+     ./vesktop.nix
      ./wallpapers.nix
      ./awww.nix
   ];
