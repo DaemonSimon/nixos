@@ -6,6 +6,12 @@ local suppressMaximizeRule = hl.window_rule({
 })
 
 hl.window_rule({
+    name  = "suppress-fullscreen-events",
+    match = { class = ".*" },
+    suppress_event = "fullscreen",
+})
+
+hl.window_rule({
     name  = "fix-xwayland-drags",
     match = {
         class      = "^$",
