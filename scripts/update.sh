@@ -162,7 +162,7 @@ else
 fi
 
 # ---- 3. build -------------------------------------------------------------
-step "3/7  Building (dry-run first, changes nothing)"
+step "3/7  Building (dry-run)"
 nixos-rebuild dry-build --flake "$FLAKE"
 ok "dry-build passed"
 
@@ -191,7 +191,7 @@ ok "$S_FATPAK"
 
 # ---- 6. garbage -----------------------------------------------------------
 step "6/7  Garbage collection"
-info "removing generations older than $GC_OLDER_THAN (keeps everything newer)"
+info "removing generations older than $GC_OLDER_THAN "
 nix-collect-garbage --delete-older-than "$GC_OLDER_THAN"
 AVAIL_AFTER="$(df -Pk /nix | awk 'NR==2 {print $4}')"
 FREED_KB=$(( AVAIL_AFTER - AVAIL_BEFORE ))
@@ -202,7 +202,7 @@ else
 fi
 ok "$S_GC"
 
-info "hard-linking duplicate files (can take a few minutes on a cold store)"
+info "hard-linking duplicate files"
 OPT_OUT="$(nix-store --optimise 2>&1 || true)"
 OPT_LINE="$(printf '%s\n' "$OPT_OUT" | grep -E 'bytes reclaimed' | tail -1 || true)"
 if [ -n "$OPT_LINE" ]; then
@@ -219,7 +219,7 @@ if as_owner git -C "$REPO" diff --cached --quiet; then
   S_REMOTE="no further changes to record"
   info "$S_REMOTE"
 else
-  as_owner git -C "$REPO" commit -q -m "flake update $(date '+%Y-%m-%d %H:%M')"
+  as_owner git -C "$REPO" commit -q -m "systen update $(date '+%Y-%m-%d %H:%M')"
   SHORT="$(as_owner git -C "$REPO" rev-parse --short HEAD)"
   S_REMOTE="committed $SHORT"
   if PUSH_OUT="$(as_owner git -C "$REPO" push 2>&1)"; then
