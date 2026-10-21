@@ -62,10 +62,20 @@ let
   '';
 
   # Same launcher name, but the guard runs first.
-  vesktopWrapped = pkgs.writeShellScriptBin "vesktop" ''
+  vesktopLauncher = pkgs.writeShellScriptBin "vesktop" ''
     ${ensureBridge}
     exec ${pkgs.vesktop}/bin/vesktop "$@"
   '';
+
+  # Join the launcher with the real package so that share/applications/vesktop.desktop
+  # and share/icons survive - writeShellScriptBin alone would drop them.
+  vesktopWrapped = pkgs.symlinkJoin {
+    name = "vesktop-wrapped-${pkgs.vesktop.version}";
+    paths = [
+      vesktopLauncher
+      pkgs.vesktop
+    ];
+  };
 in
 {
   home.packages = [ vesktopWrapped ];
