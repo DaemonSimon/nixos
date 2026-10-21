@@ -17,15 +17,26 @@
   # boot.plymouth.logo = /path/to/logo.png; # optional custom logo
 
   # ── v4l2loopback kernel module ─────────────────────────
-  # nix-citizen (modules/nixos/star-citizen.nix) puts v4l2loopback into
-  # boot.extraModulePackages. The nixpkgs package ships its own depmod
-  # index - modules.dep, modules.alias, modules.symbols, modules.builtin*
-  # - inside lib/modules/<version>/, which is exactly where the kernel's
-  # own "modules" output keeps its index. Merging the two into
-  # system.modulesTree then fails with a "collision between ..." error.
+  # Grep for this block if a build dies with "conflicting subpath" or
+  # "collision" on a modules.dep / modules.alias path:
   #
-  # Dropping the pre-generated index is safe: depmod rebuilds the real
-  # index for the merged tree at boot.
+  #   error: pkgs.buildEnv error: two given paths contain a conflicting
+  #   subpath:
+  #     '/nix/store/...-v4l2loopback-0.15.4/lib/modules/<kernel>/modules.alias'
+  #     '/nix/store/...-linux-<kernel>-modules/lib/modules/<kernel>/modules.alias'
+  #
+  # Cause: nix-citizen (modules/nixos/star-citizen.nix) puts v4l2loopback
+  # into boot.extraModulePackages. The nixpkgs package ships its own depmod
+  # index - modules.dep, modules.alias, modules.symbols, modules.builtin* -
+  # inside lib/modules/<version>/, the same place the kernel's own "modules"
+  # output keeps its index. Nix will not merge two different files under one
+  # path, so system.modulesTree fails to build.
+  #
+  # Fix: strip the pre-generated index from the v4l2loopback output below.
+  # Safe - the aggregator regenerates the real index with depmod, and that
+  # index already covers v4l2loopback. This is an upstream nixpkgs bug, so
+  # the workaround stays until nixpkgs stops shipping the index.
+  # See README.md -> Troubleshooting.
   nixpkgs.overlays = [
     (final: prev: {
       linuxPackages = prev.linuxPackages.extend (self: super: {
