@@ -38,6 +38,8 @@ hl.bind(mainMod .. " + F", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))
 hl.bind(mainMod .. " + F11", hl.dsp.window.fullscreen({ action = "toggle" }))
+-- Toggle blocking of fullscreen requests from apps/games
+hl.bind(mainMod .. " + SHIFT + F", hl.dsp.exec_cmd("bash ~/.config/hypr/scripts/toggle-fullscreen.sh"))
 
 -- Focus movement
 hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
