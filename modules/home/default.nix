@@ -5,7 +5,6 @@
   imports = [
      ./packages.nix
      ./yazi.nix
-     ./mime-defaults.nix
      ./firefox.nix
      ./cursor.nix
      ./hypr.nix
