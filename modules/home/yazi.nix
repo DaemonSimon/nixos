@@ -20,10 +20,4 @@
       }
     ];
   };
-
-  # Ensure Yazi is the default file manager (over VS Code etc.)
-  programs.defaults.xdg.mimeApps = ''
-    [Default Applications]
-    inode/directory=yazi.desktop
-  '';
 }
