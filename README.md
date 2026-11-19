@@ -46,6 +46,7 @@ directory.
     │   ├── networking.nix    # networkmanager, tailscale
     │   ├── nix.nix           # flakes, unfree, nix-ld, substituters
     │   ├── packages.nix      # environment.systemPackages
+    │   ├── quickemu.nix      # quickemu/quickget, kvm group, ~/VMs
     │   ├── services.nix      # duplicati
     │   ├── star-citizen.nix  # rsi-launcher module
     │   ├── users.nix         # simon, wheel + networkmanager
@@ -84,6 +85,18 @@ $ sudo nixos-rebuild switch --flake .#nixos
 `switch` activates the result and sets it as the systemd-boot default.
 `boot` records it for the next reboot without activating it, which is what
 you want when the change is to the bootloader or initrd.
+
+## macOS VM (quickemu)
+
+`modules/nixos/quickemu.nix` puts `quickemu` (which includes `quickget`) in
+`PATH`, adds `simon` to the `kvm` group and creates `~/VMs`. The `kvm-amd`
+kernel module is already loaded in `hardware-configuration.nix`.
+
+```console
+$ cd ~/VMs
+$ quickget macos tahoe
+$ quickemu --vm macos-tahoe.conf
+```
 
 ## Updating
 

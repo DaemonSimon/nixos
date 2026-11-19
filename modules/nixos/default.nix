@@ -13,6 +13,7 @@
     ./users.nix
     ./nix.nix
     ./packages.nix
+    ./quickemu.nix
     ./xremap.nix
     ./flatpak.nix
     ./update.nix
