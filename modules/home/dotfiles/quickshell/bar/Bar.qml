@@ -293,6 +293,84 @@ Scope {
           anchors.verticalCenter: parent.verticalCenter
           spacing: 8
 
+          // Leek poll countdown (cyberleek.cc)
+          Rectangle {
+            height: 24
+            width: leekContent.width + 12
+            radius: 12
+            color: root.theme.bgSurface
+
+            Accessible.role: Accessible.StaticText
+            Accessible.name: "EXE poll ends in " + Leek.countdown
+
+            Row {
+              id: leekContent
+              anchors.centerIn: parent
+              spacing: 6
+
+              Text {
+                anchors.verticalCenter: parent.verticalCenter
+                text: "󰔟"
+                color: root.theme.accentOrange
+                font.pixelSize: 14
+                font.family: root.font
+              }
+
+              Text {
+                anchors.verticalCenter: parent.verticalCenter
+                text: Leek.countdown
+                color: root.theme.textPrimary
+                font.pixelSize: 11
+                font.family: root.font
+              }
+            }
+          }
+
+          // Latest Leonida GitHub commit
+          Rectangle {
+            height: 24
+            width: Math.min(leekGhContent.width + 12, 320)
+            radius: 12
+            color: root.theme.bgSurface
+
+            Accessible.role: Accessible.StaticText
+            Accessible.name: "Leonida: " + Leek.lastCommit
+
+            Row {
+              id: leekGhContent
+              anchors.centerIn: parent
+              spacing: 6
+
+              Text {
+                anchors.verticalCenter: parent.verticalCenter
+                text: ""
+                color: root.theme.accentPrimary
+                font.pixelSize: 14
+                font.family: root.font
+              }
+
+              Text {
+                anchors.verticalCenter: parent.verticalCenter
+                width: Math.min(implicitWidth, 290)
+                elide: Text.ElideRight
+                text: (Leek.commitAge ? Leek.commitAge + " · " : "") + Leek.lastCommit
+                color: root.theme.textPrimary
+                font.pixelSize: 11
+                font.family: root.font
+              }
+            }
+
+            MouseArea {
+              anchors.fill: parent
+              cursorShape: Qt.PointingHandCursor
+              acceptedButtons: Qt.LeftButton | Qt.RightButton
+              // left: repo page (README status table = progress), right: commit list
+              onClicked: (mouse) => Quickshell.execDetached(["xdg-open", mouse.button === Qt.RightButton
+                ? "https://github.com/ItsNotRexed/Leonida/commits"
+                : "https://github.com/ItsNotRexed/Leonida#status"])
+            }
+          }
+
           // Volume
           Rectangle {
             height: 24
